@@ -1,24 +1,37 @@
-const todoItems = [
-    { id: 1, title: "Learn HTML", status: "done", completedOn: new Date("2021-09-11") },
-    { id: 2, title: "Learn TypeScript", status: "in-progress" },
-    { id: 3, title: "Write the best app in the world", status: "todo" },
+interface List {
+    id: number;
+    title: string;
+    status: ListStatus;
+    completedOn?: Date;
+}
+
+enum ListStatus {
+    InProgress = "in-progress",
+    Done = "done",
+    ToDo = "todo",
+}
+
+const todoItems: List [] = [
+    { id: 1, title: "Learn HTML", status: ListStatus.Done, completedOn: new Date("2021-09-11") },
+    { id: 2, title: "Learn TypeScript", status: ListStatus.InProgress },
+    { id: 3, title: "Write the best app in the world", status: ListStatus.ToDo },
 ]
 
-function addTodoItem(todo) {
+function addTodoItem(todo: string): List{
     const id = getNextId(todoItems)
 
     const newTodo = {
         id,
         title: todo,
-        status: "todo",
+        status: ListStatus.ToDo,
     }
 
     todoItems.push(newTodo)
 
-    return newTodo
+    return newTodo;
 }
 
-function getNextId(items) {
+function getNextId<T extends { id: number }>(items: T[]): number {
     return items.reduce((max, x) => x.id > max ? x.id : max, 0) + 1
 }
 
