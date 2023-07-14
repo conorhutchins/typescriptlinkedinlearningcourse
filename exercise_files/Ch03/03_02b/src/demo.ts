@@ -14,3 +14,5 @@ let primaryContact: Contact = {
     name: "Jamie Johnson",
     status: "active"
 }
+
+type ContactFields = keyof Contact
