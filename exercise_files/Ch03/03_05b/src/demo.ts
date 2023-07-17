@@ -1,5 +1,5 @@
-let x = { name: "Wruce Bayne" };
-x.id = 1234;
+let x: Record<string, string | number | boolean | Function > = { name: "Wruce Bayne" };
+x.number = 1234;
 
 
 
